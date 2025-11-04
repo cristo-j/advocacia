@@ -59,7 +59,7 @@ update(request, response) {
     Processo.update(request.body, id_advogado, id_processo)
         .then(num => {
         if (num == 1) {
-            ProcessoModel.findOne(id_advogado, id_processo).then(data => {
+            Processo.findOne(id_advogado, id_processo).then(data => {
                 response.send(data);
             });
         } else {
