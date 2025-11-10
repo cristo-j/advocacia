@@ -1,9 +1,9 @@
 module.exports = {
   type: 'object',
   properties: {
-    nome: { type: 'string' },
-    oab: { type: 'string' },
-    especialidade: { type: 'string' },
+    nome: { type: 'string', not: { type: 'null' } },
+    oab: { type: 'string', not: { type: 'null' } },
+    especialidade: { type: 'string', not: { type: 'null' } },
   },
   required: ['nome', 'oab', 'especialidade'],
   additionalProperties: false,

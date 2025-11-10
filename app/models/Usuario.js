@@ -58,15 +58,16 @@ class Usuario {
 const UsuarioModel = db.define('usuario', {
   nome: {
     type: Sequelize.STRING(200),
-    allowNull: true,
+    allowNull: false,
   },
   email: {
     type: Sequelize.STRING(80),
-    allowNull: true,
+    allowNull: false,
+    unique: true,
   },
   senha: {
     type: Sequelize.STRING(64),
-    allowNull: true,
+    allowNull: false,
   },
 });
 module.exports = { Usuario, UsuarioModel };

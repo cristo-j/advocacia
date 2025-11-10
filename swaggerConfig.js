@@ -4,9 +4,9 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'Game API - Pack de Aprendizado',
+      title: 'Advocacia - Pack de Aprendizado',
       version: '1.0.0',
-      description: 'Documentação da API RESTful para gestão de Jogadores e Equipamentos.',
+      description: 'Documentação da API RESTful para gestão de Advogados e Processos.',
     },
     servers: [
       {
@@ -26,44 +26,59 @@ const options = {
       },
       // Define os "objetos" que sua API usa
       schemas: {
-        Jogador: {
+        advogado: {
           type: 'object',
           properties: {
-            id: { type: 'integer', description: 'ID do jogador', example: 1 },
-            nome: { type: 'string', description: 'Nome do jogador', example: 'player1' },
-            ataque: { type: 'integer', description: 'Pontos de ataque', example: 40 },
-            defesa: { type: 'integer', description: 'Pontos de defesa', example: 50 },
-            pontos_vida: { type: 'integer', description: 'Pontos de vida', example: 100 },
+            id: { type: 'integer', description: 'ID do advogado', example: 1 },
+            nome: { type: 'string', description: 'Nome do advogado', example: 'João das Couves' },
+            oab: { type: 'string', description: 'Número da OAB', example: '12345 SC'},
+            especialidade: { type: 'string', description: 'Área de Especialidade', example: 'Trabalhista' },
           }
         },
-        Post_Edit_Jogador: {
+        Post_Edit_advogado: {
           type: 'object',
-          required: ['nome', 'ataque', 'defesa'],
+          required: ['nome', 'oab', 'especialidade'],
           properties: {
-            nome: { type: 'string', description: 'Nome do novo jogador' },
-            ataque: { type: 'integer', description: 'Pontos de ataque (máx 100)', maximum: 100 },
-            defesa: { type: 'integer', description: 'Pontos de defesa (máx 100)', maximum: 100 },
-            pontos_vida: { type: 'integer', description: 'Pontos de vida (máx 100)', maximum: 100 }
+            nome: { type: 'string', description: 'Nome do advogado', example: 'João das Couves' },
+            oab: { type: 'string', description: 'Número da OAB', example: '12345 SC'},
+            especialidade: { type: 'string', description: 'Área de Especialidade', example: 'Trabalhista' },
           }
         },
-        Equipamento: {
+        processo: {
             type: 'object',
             properties: {
-                id: { type: 'integer', description: 'ID do equipamento' },
-                id_jogador: { type: 'integer', description: 'ID do jogador dono do equipamento' },
-                descricao: { type: 'string', description: 'Descrição do equipamento', example: 'espada' },
-                bonus_ataque: { type: 'integer', description: 'Bônus de ataque fornecido', example: 30 },
-                bonus_defesa: { type: 'integer', description: 'Bônus de defesa fornecido', example: 15 }
+                id: { type: 'integer', description: 'ID do processo' },
+                id_advogado: { type: 'integer', description: 'ID do advogado responsável pelo processo' },
+                numero_processo: { type: 'string', description: 'Número do processo na Justiça', example: '9999999-99.2025.9.99.999' },
+                descricao: { type: 'string', description: 'Descrição do processo', example: 'Ação de indenização por danos morais' },
+                status: { type: 'string', description: 'Situação atual do processo', example: 'em andamento, arquivado, finalizado' },
             }
         },
-        Post_Edit_Equipamento: {
+        Post_Edit_processo: {
             type: 'object',
-            required: ['descricao', 'bonus_ataque', 'bonus_defesa'],
+            required: ['numero_processo', 'descricao', 'status'],
             properties: {
-                descricao: { type: 'string', description: 'Descrição do novo equipamento' },
-                bonus_ataque: { type: 'integer', description: 'Bônus de ataque' },
-                bonus_defesa: { type: 'integer', description: 'Bônus de defesa' }
+                numero_processo: { type: 'string', description: 'Número do processo na Justiça', example: '9999999-99.2025.9.99.999' },
+                descricao: { type: 'text', description: 'Descrição do processo', example: 'Ação de indenização por danos morais' },
+                status: { type: 'string', description: 'Situação atual do processo', example: 'em andamento, arquivado, finalizado' },
             }
+        },
+        usuario: {
+          type: 'object',
+          required: ['nome', 'email', 'senha'],
+          properties: {
+            nome: { type: 'string', description: 'Nome do usuário', example: 'João' },
+            email: { type: 'string', description: 'email do usuário', example: 'teste@gmail.com'},
+            senha: { type: 'string', description: 'senha', example: 'minhasenha' },
+          }
+        },
+        login: {
+          type: 'object',
+          required: ['email', 'senha'],
+          properties: {
+            email: { type: 'string', description: 'email do usuário', example: 'teste@gmail.com'},
+            senha: { type: 'string', description: 'senha', example: 'minhasenha' },
+          }
         }
       }
     }

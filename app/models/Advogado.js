@@ -113,6 +113,7 @@ const AdvogadoModel = db.define('advogado', {
   oab: {
     type: Sequelize.STRING(10),
     allowNull: false,
+    unique: true,
   },
   especialidade: {
     type: Sequelize.STRING(50),
