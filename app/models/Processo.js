@@ -95,7 +95,7 @@ const ProcessoModel = db.define('processo', {
   },
   id_advogado: {
     type: Sequelize.INTEGER,
-    allowNull: false,
+    allowNull: true,
   },
 });
 
