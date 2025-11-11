@@ -84,6 +84,7 @@ const ProcessoModel = db.define('processo', {
   numero_processo: {
     type: Sequelize.STRING(25),
     allowNull: false,
+    unique: true,
   },
   descricao: {
     type: Sequelize.TEXT,
