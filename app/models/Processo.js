@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('./conexao.js');
+const { type } = require('../schemas/advogado/novoAdvogado.js');
 
 class Processo {
   #descricao;
@@ -80,20 +81,20 @@ const ProcessoModel = db.define('processo', {
     allowNull: false,
     primaryKey: true,
   },
-  id_advogado: {
-    type: Sequelize.INTEGER,
+  numero_processo: {
+    type: Sequelize.STRING(25),
     allowNull: false,
   },
   descricao: {
     type: Sequelize.TEXT,
     allowNull: false,
   },
-  numero_processo: {
-    type: Sequelize.STRING(25),
-    allowNull: false,
-  },
   status: {
     type: Sequelize.STRING(20),
+    allowNull: false,
+  },
+  id_advogado: {
+    type: Sequelize.INTEGER,
     allowNull: false,
   },
 });

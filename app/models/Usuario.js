@@ -56,12 +56,18 @@ class Usuario {
   }
 }
 const UsuarioModel = db.define('usuario', {
-  nome: {
-    type: Sequelize.STRING(200),
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
     allowNull: false,
+    primaryKey: true,
+    },
+  nome: {
+    type: Sequelize.STRING(40),
+    allowNull: true,
   },
   email: {
-    type: Sequelize.STRING(80),
+    type: Sequelize.STRING(40),
     allowNull: false,
     unique: true,
   },

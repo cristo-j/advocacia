@@ -37,7 +37,7 @@ Este projeto faz referência a uma modelagem hipotética de um escritório de ad
 - Se Windows: instalações [node e npm](https://treehouse.github.io/installation-guides/windows/node-windows.html) e [MySQL](https://dev.mysql.com/downloads/installer/);
 - Se Linux: instalações [node e npm](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-22-04) e [MySQL](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-22-04);
 
-2. Para acessar o banco de dados, caso não queira manipular o BD via linha de comando, pode utilizar um ou mais softwares usuários, como [MySQL Workbench](https://www.mysql.com/products/workbench/) ou [DBeaver](https://dbeaver.io/).
+2. Para acessar o banco de dados, caso não queira manipular o BD via linha de comando, pode utilizar um ou mais softwares usuários, como [MySQL Workbench](https://www.mysql.com/products/workbench/) ou [DBeaver](https://dbeaver.io/). Deverá ser previamente criado um schema com o nome "advocacia" (a criação de tabelas e demais configurações serão feitas pela API).
 
 3. Para usuários Windows recomenda-se sempre utilizar o [Git Bash for Windows](https://gitforwindows.org/) a fim de executar comandos similares ao estilo linux das aulas. Pode usar o terminal do [Visual Studio Code](https://code.visualstudio.com/).
 
@@ -80,9 +80,7 @@ dev@pc:~$ npx nodemon
 
 ### Validação de dados JSON com Ajv
 
-Ao receber documentos JSON do usuário, este projeto utiliza a biblioteca Ajv para avaliar se na estrutura do documentos os dados encontram-se adequados conforme a necessidade do back-end. Para criar um schema de validação verifique exemplo em app/schemas. Poderá especificar regras de campos obrigatórios, tipos de dados que cada campo deve ser, dentre outros.
-
-Para utilizar o validador automatizado, no controller é necessário realizar a chamada do objeto do Ajv, informar o objeto de schema de validação (item anterior). Depois é necessário apenas informar o conjunto de dados recebido (pode ser o corpo da requisição) ao validador para que o mesmo avalie toda a estrutura. Um exemplo pode ser consultado no método create em app/controllers/JogadorController.
+Ao receber documentos JSON do usuário, este projeto utiliza a biblioteca Ajv para avaliar se na estrutura do documentos os dados encontram-se adequados conforme a necessidade do back-end. 
 
 ### Banco de Dados
 
