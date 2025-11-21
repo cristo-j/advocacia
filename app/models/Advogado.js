@@ -7,7 +7,7 @@ class Advogado {
   #especialidade;
 
   // constructor(nome, oab, especialidade ) {
-  constructor() {}
+  constructor() { }
 
   get nome() {
     return this.#nome;
@@ -41,6 +41,30 @@ class Advogado {
     } catch (error) {
       throw error;
     }
+  }
+
+  static async findByOab(oab) {
+    const [results] = await db.query(
+      'SELECT * FROM advogado WHERE oab = ? LIMIT 1',
+      {
+        replacements: [oab],
+        type: Sequelize.QueryTypes.SELECT,
+      }
+    );
+
+    return results || null;
+  }
+
+  static async findByOabExcluindoId(oab, id) {
+    const [results] = await db.query(
+      'SELECT * FROM advogado WHERE oab = ? AND id != ? LIMIT 1',
+      {
+        replacements: [oab, id],
+        type: Sequelize.QueryTypes.SELECT,
+      }
+    );
+
+    return results || null;
   }
 
   static async findAll(processo) {

@@ -41,6 +41,19 @@ class Usuario {
       throw error;
     }
   }
+  
+  static async findByemail(email) {
+    const [results] = await db.query(
+      'SELECT * FROM usuario WHERE email = ? LIMIT 1',
+      {
+        replacements: [email],
+        type: Sequelize.QueryTypes.SELECT,
+      }
+    );
+
+    return results || null;
+  }
+
 
   static async findOne(dados) {
     try {

@@ -7,11 +7,13 @@ const validacao = ajv.compile(schema);
 const helper = require('../commons/helper.js');
 const schemaLogin = require('../schemas/usuario/login.js');
 const validacaoLogin = ajv.compile(schemaLogin);
+const localize = require('ajv-i18n/localize/pt-BR');
 
 class UsuarioController {
   create(request, response) {
     let validacoes = validacao(request.body);
     if (!validacoes) {
+      localize(validacao.errors);
       let mensagem = validacao.errors[0].instancePath.replace('/', '');
       mensagem += ' ' + validacao.errors[0].message;
       return response.status(400).json({
@@ -24,8 +26,14 @@ class UsuarioController {
       email: request.body.email,
       senha: helper.hashSenha(request.body.senha),
     };
-
-    Usuario.create(usuario)
+    
+    Usuario.findByemail(usuario.email)
+      .then((existente) => {
+        if (existente) {
+          return Promise.reject({ status: 400, message: 'e-mail já cadastrado.' });
+        }
+        return Usuario.create(request.body);
+      })
       .then((data) => {
         data.setDataValue('senha', '');
         data.setDataValue('token', helper.gerarTokenAcesso(usuario.nome, usuario.id));
@@ -41,6 +49,7 @@ class UsuarioController {
   login(request, response) {
     let validacoes = validacaoLogin(request.body);
     if (!validacoes) {
+      localize(validacao.errors);
       let mensagem = validacaoLogin.errors[0].instancePath.replace('/', '');
       mensagem += ' ' + validacaoLogin.errors[0].message;
       return response.status(400).json({
