@@ -38,6 +38,30 @@ class Processo {
     return ProcessoModel.create(novoProcesso);
   }
 
+  
+  static async findByNumeroProcesso(numero_processo) {
+    const [results] = await db.query(
+      'SELECT * FROM processo WHERE numero_processo = ? LIMIT 1',
+      {
+        replacements: [numero_processo],
+        type: Sequelize.QueryTypes.SELECT,
+      }
+    );
+
+    return results || null;
+  }
+
+    static async findByNumeroProcessoExcluindoId(numero_processo, id) {
+    const [results] = await db.query(
+      'SELECT * FROM processo WHERE numero_processo = ? AND id != ? LIMIT 1',
+      {
+        replacements: [numero_processo, id],
+        type: Sequelize.QueryTypes.SELECT,
+      }
+    );
+
+    return results || null;
+  }
 
 static update(dados, id_advogado, id_processo) {
     return ProcessoModel.update(dados, {

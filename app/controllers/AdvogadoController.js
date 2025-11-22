@@ -65,14 +65,14 @@ class AdvogadoController {
         }
         return Advogado.create(request.body);
       })
-          .then((data) => {
-            return response.status(201).json(data);
-          })
-      .catch ((erro) => {
-          return response.status(500).json({
-            message: 'erro no servidor: ' + erro.message,
-          });
+      .then((data) => {
+        return response.status(201).json(data);
+      })
+      .catch((erro) => {
+        return response.status(500).json({
+          message: 'erro no servidor: ' + erro.message,
         });
+      });
   }
 
   update(request, response) {
@@ -128,14 +128,6 @@ class AdvogadoController {
         return response.status(500).json({ message });
       });
   }
-
-
-
-
-
-
-
-
 
   delete(request, response) {
     const id = request.params.id;

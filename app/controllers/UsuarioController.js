@@ -26,13 +26,13 @@ class UsuarioController {
       email: request.body.email,
       senha: helper.hashSenha(request.body.senha),
     };
-    
+
     Usuario.findByemail(usuario.email)
       .then((existente) => {
         if (existente) {
           return Promise.reject({ status: 400, message: 'e-mail já cadastrado.' });
         }
-        return Usuario.create(request.body);
+        return Usuario.create(usuario);
       })
       .then((data) => {
         data.setDataValue('senha', '');
