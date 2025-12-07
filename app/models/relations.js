@@ -2,13 +2,13 @@
 //porem cada relacionamento pode ser implementado dentro de sua model separadamente
 module.exports = function (models) {
 
-  models.advogado.hasMany(models.processo, {
-    foreignKey: 'id_advogado', //nome da FK
-    onDelete: 'SET NULL', //configuracao da FK
+  models.vinho.hasMany(models.garrafa, {
+    foreignKey: 'id_vinho', //nome da FK
+    onDelete: 'RESTRICT', //configuracao da FK
   });
 
-  models.processo.belongsTo(models.advogado, {
-    foreignKey: 'id_advogado',
-    onDelete: 'SET NULL',
+  models.garrafa.belongsTo(models.vinho, {
+    foreignKey: 'id_vinho',
+    onDelete: 'RESTRICT',
   });
 };

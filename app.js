@@ -32,9 +32,9 @@ app.get('/', (request, response) => {
     version: '1.0',
   });
 });
-const advogadoRotas = require('./app/routes/advogado.routes.js');
+const vinhoRotas = require('./app/routes/vinho.routes.js');
 const usuarioRotas = require('./app/routes/usuario.routes.js');
-app.use(advogadoRotas);
+app.use(vinhoRotas);
 app.use(usuarioRotas);
 
 //RODANDO SERVER

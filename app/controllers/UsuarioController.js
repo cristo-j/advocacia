@@ -64,7 +64,7 @@ class UsuarioController {
       .then((registro) => {
         if (!registro) {
           return response.status(404).json({
-            message: 'Usuario ou senha nao foram encontrados',
+            message: 'Usuario ou senha nao foram encontrados.',
           });
         }
         return response.status(200).json({
